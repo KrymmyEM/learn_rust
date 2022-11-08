@@ -19,7 +19,7 @@ fn main() {
     loop{
         for gX in 0..width+1{
             for gY in 0..height+1{
-                if (gY == point.y && gX == point.x){
+                if gY == point.y && gX == point.x{
                     print!(" * ");
                     continue;
                 }
@@ -34,7 +34,7 @@ fn main() {
                     print!(" = ");
                     continue;
                 }
-                if (gY == 0){
+                if gY == 0{
                     print!(" = ");
                     continue;
                 }
@@ -47,6 +47,5 @@ fn main() {
         point.y = rand::thread_rng().gen_range(1, height-1);
         print!("{}c",27 as char);
         thread::sleep(millis);
-        
     }
 }

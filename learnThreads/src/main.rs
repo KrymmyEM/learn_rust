@@ -1,17 +1,18 @@
-use std::thread;
-
+use std::{thread, io::{stdin, stdout}};
 fn main() {
-    let th_one = thread::spawn(||{
-        let mut val = String::new();
-        print!("Please insert value:");
-        std::io::stdin().read_line(&mut val).expect("Insert correct text");
-        let _number: u32 = val.parse().expect("Not a number");
-        let mut number = &_number;
-        println!("{}",_number);
-        println!("{}",number);
-        loop {
-            println!("{}",number);
-        }
-    });
-    println!("Hello, world!");
+    println!("Insert count threads");
+    let mut value = String::new();
+    stdin().read_line(&mut value).unwrap();
+    let count_threads:i32 = value.trim().parse().unwrap();
+    for iter in 1..count_threads+1{
+        let mut neThread = thread::spawn(||{
+            let mut i:u32 = 0;
+            loop {
+                println!("{}", i);
+                i += 1;
+                thread::sleep(std::time::Duration::from_secs(1));
+            }
+        });
+        thread::sleep(std::time::Duration::from_secs(2));
+    }
 }
